@@ -6,6 +6,7 @@
 
 #include <string>
 #include <ostream>
+#include <vector>
 
 class Production {
     std::string left; //Lado direito da produção
@@ -20,7 +21,15 @@ public:
     Production& operator=( const Production& ) = default;
     Production& operator=( Production&& ) = default;
 
-    /* Impreme a produção. Formato: left -> right
+    /* Retorna o resultado da aplicação desta produção,
+     * de todas as formas possíveis, uma única vez,
+     * na string passada.
+     *
+     * Caso não seja possível aplicar a produção, um vetor
+     * vazio é retornado. */
+    std::vector<std::string> apply( std::string );
+
+    /* Imprime a produção. Formato: left -> right
      * Não imprime fim de linha. */
     friend std::ostream& operator<<( std::ostream&, const Production& );
 };

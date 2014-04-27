@@ -29,7 +29,7 @@ dependências do .cpp em questão. Então incluímos todos os .d \
 no final.
 
 a.out: $(OBJ)
-	$(COMPILER) $(FLAGS) $^ $(shell sdl2-config --static-libs)
+	$(COMPILER) $(FLAGS) $^
 # $^ retorna todas as dependências, sem repetição.
 
 #"Metarregra": para cada palavra em OBJDEPS que case com %.o, defina \

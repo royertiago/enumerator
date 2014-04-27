@@ -14,27 +14,10 @@ using std::cout;
 using std::endl;
 
 int main() {
-    vector<Production> p;
-    
-    char buf[128];
-    cin.getline( buf, sizeof(buf) );
-    string terminals( buf );
-    cout << buf << endl;
+    Production p( "AA", "" );
+    vector<string> res = p.apply( "A" );
+    for( string& str : res )
+        cout << str << endl;
 
-    do {
-        cin.getline( buf, sizeof(buf) );
-        p = Parse::productionList( buf );
-
-        for( Production& prod : p )
-            cout << prod << endl;
-        cout << endl;
-    } while( !p.empty() );
-
-    string initial( buf );
-    cout << initial << endl;
-
-    int q;
-    cin >> q;
-    cout << q << endl;
     return 0;
 }

@@ -1,0 +1,22 @@
+Pequeno programa que lê uma especificação de uma gramática
+e gera as palavras da linguagem gerada.
+
+Exemplo de arquivo de entrada:
+abc
+S -> aSBc | aBc
+Bc -> cB
+aB -> ab
+bB -> bb
+S
+30
+
+
+Especificação do arquivo de entrada:
+A primeira linha deve conter todos os símbolos terminais da gramática.
+As próximas linhas devem conter expressões do tipo
+    símbolos -> símbolos [| símbolos]...
+Estas expressões representarão as produções.
+A penúltima linha deve conter um único símbolo, sem '->'. Este é o
+símbolo inicial da gramática.
+A última linha é um número contendo a quantidade de palavras a
+serem geradas.

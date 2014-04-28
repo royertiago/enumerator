@@ -1,0 +1,7 @@
+abc
+S -> aSBc | aBc
+cB -> Bc
+aB -> ab
+bB -> bb
+S
+5

@@ -4,11 +4,11 @@ e gera as palavras da linguagem gerada.
 Exemplo de arquivo de entrada:
 abc
 S -> aSBc | aBc
-Bc -> cB
+cB -> Bc
 aB -> ab
 bB -> bb
 S
-30
+5
 
 
 Especificação do arquivo de entrada:

@@ -4,13 +4,16 @@
 
 #include <set>
 #include <algorithm>
+#include <iterator>
 #include "grammar.h"
+
+#include <stdio.h>
 
 using std::set;
 using std::vector;
 using std::string;
-using std::count_if;
 using std::copy_if;
+using std::back_inserter;
 
 Grammar::Grammar( string Vt, string s, vector<Production> p ) :
     terminals( Vt ),
@@ -28,25 +31,23 @@ vector<string> Grammar::generate( int amount ) {
         return Grammar::sentence( str, terminals );
     };
 
+    vector<string> sentences; //Lista a ser retornada
     set<string> T; //Conjunto das formas sentencias geradas até agora
     set<string> Tp; //Conjunto das próximas formas sentenciais a serem geradas
     Tp.insert( start );
 
-    int actual = 0;
-    
     do {
         T = Tp;
+        Tp.clear();
         for( const string& str : T )
             for( Production& p : productions ) {
                 vector<string> v = p.apply( str );
                 Tp.insert( v.begin(), v.end() );
             }
         /* Aqui, todas as novas formas sentenciais já foram geradas.
-         * Temos de contar quantas sentenças há entre elas. */
-        actual = count_if( Tp.begin(), Tp.end(), isSentence );
-    } while( actual < amount );
+         * Adicionemos as sentenças formadas à lista oficial: */
+        copy_if( Tp.begin(), Tp.end(), back_inserter(sentences), isSentence );
+    } while( (int) sentences.size() < amount );
 
-    vector<string> r( actual );
-    copy_if( Tp.begin(), Tp.end(), r.begin(), isSentence );
-    return r;
+    return sentences;
 }
